@@ -1,6 +1,6 @@
 # 🏛️ President Orchestrator
 
-This project is a multi-agent question-answering system with an orchestrator that decides which agent should answer a user query. Fully local, using FAISS for retrieval and Ollama for generation. Includes an optional PCM (Process Communication Model) pipeline for video-based personality/emotion profiling that ingests its results as a dedicated agent’s memory.
+This project is a multi-agent question-answering system with an orchestrator that decides which agent should answer a user query. Fully local, using FAISS for retrieval and Ollama for generation. Includes an optional profiles (Process Communication Model) pipeline for video-based personality/emotion profiling that ingests its results as a dedicated agent’s memory.
 
 ---
 
@@ -80,16 +80,16 @@ Everything runs locally: embeddings, search, and generation.
 - **Admin endpoints**:
   - Health: index existence, chunk counts, centroid presence.  
   - Router explain: centroid similarities and per-agent RAG scores.  
-- **PCM endpoints**: video analysis → traits, emotions, transcript, guidelines → ingested into PCM agent.
+- **Profiles endpoints**: video analysis → traits, emotions, transcript, guidelines → ingested into Profiles agent.
 
 ---
 
-## 🎭 PCM Profiling (Separate Conda Env)
+## 🎭 Profiling (Separate Conda Env)
 
 - Runs in `newenv` to isolate heavy audio/vision deps (pyannote, Whisper, OpenCV).  
-- Extracts audio → transcribes → diarizes → estimates audio & visual emotions → scores communication styles → builds PCM profiles → summarizes → generates communication guidelines via LLM.  
-- Produces compact “short texts” embedded into PCM agent’s FAISS index.  
-- API calls PCM worker via: run -n newenv python -m pcm_worker.cli ...
+- Extracts audio → transcribes → diarizes → estimates audio & visual emotions → scores communication styles → builds profiles → summarizes → generates communication guidelines via LLM.  
+- Produces compact “short texts” embedded into Profiles agent’s FAISS index.  
+- API calls Profile worker (private code ask for distribution) via: run -n newenv python -m profiles_worker.cli ...
 
 ---
 
