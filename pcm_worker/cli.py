@@ -1,4 +1,4 @@
-# pcm_worker/cli.py
+# prof_worker/cli.py
 import argparse, json, sys, os, logging
 from pcm_worker.pipeline import run_pcm_analysis
 
